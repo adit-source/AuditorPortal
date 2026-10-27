@@ -74,15 +74,13 @@ const INDIAN_STATES = [
 ];
 
 function App() {
-  // Start logged out. Never create a default admin session.
-const [currentUser, setCurrentUser] = useState(null);
-  try {
-    const saved = localStorage.getItem("auditor_session");
-    return saved ? JSON.parse(saved) : null;
-  } catch {
+  // Always start logged out so the site opens directly to the Login page
+  const [currentUser, setCurrentUser] = useState(null);
+
+  useEffect(() => {
+    // Ensure every fresh open lands strictly on the Login page
     localStorage.removeItem("auditor_session");
-    return null;
-  }
+  }, []);
 
   const [adminAuditorMode, setAdminAuditorMode] = useState(false);
   const [page, setPage] = useState("login"); // "login" | "register"
@@ -154,6 +152,8 @@ const [currentUser, setCurrentUser] = useState(null);
   const handleLogout = () => {
     localStorage.removeItem("auditor_session");
     setCurrentUser(null);
+    setAdminAuditorMode(false);
+    setPage("login");
     setAlertInfo({
       type: "info",
       message: "You have securely signed out of the Portal."
