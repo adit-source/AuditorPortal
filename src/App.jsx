@@ -74,6 +74,8 @@ const INDIAN_STATES = [
 ];
 
 function App() {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+
   // Always start logged out so the site opens directly to the Login page
   const [currentUser, setCurrentUser] = useState(null);
 
@@ -112,7 +114,7 @@ function App() {
     let isMounted = true;
     const checkApi = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/health", {
+        const res = await fetch(`${API_BASE_URL}/health`, {
           signal: AbortSignal.timeout(3000)
         });
         if (res.ok && isMounted) {
@@ -174,7 +176,7 @@ function App() {
     setGoogleLoading(true);
     setAlertInfo(null);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/google", {
+      const response = await fetch(`${API_BASE_URL}/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -221,7 +223,7 @@ function App() {
     // SIGN IN MODE
     if (isLogin) {
       try {
-        const response = await fetch("http://localhost:5000/api/login", {
+        const response = await fetch(`${API_BASE_URL}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -262,7 +264,7 @@ function App() {
 
     // SIGN UP / REGISTER MODE
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch(`${API_BASE_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

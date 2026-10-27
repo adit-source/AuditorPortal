@@ -23,6 +23,7 @@ import {
 } from "lucide-react";
 
 export default function PunchInLanding({ onNavigateToAuth }) {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
   // Live Clock
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -91,7 +92,7 @@ export default function PunchInLanding({ onNavigateToAuth }) {
   // Fetch recent punch logs from backend
   const fetchPunchLogs = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/attendance/logs");
+      const res = await fetch(`${API_BASE_URL}/attendance/logs`);
       const data = await res.json();
       if (res.ok && data.logs && data.logs.length > 0) {
         setPunchLogs(data.logs);
@@ -231,7 +232,7 @@ export default function PunchInLanding({ onNavigateToAuth }) {
           verification_status: "VERIFIED"
         };
 
-        const res = await fetch("http://localhost:5000/api/attendance/punch", {
+        const res = await fetch(`${API_BASE_URL}/attendance/punch`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)

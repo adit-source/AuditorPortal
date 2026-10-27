@@ -128,6 +128,7 @@ const getPresetSitesForState = (state) => {
 };
 
 export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwitchToAdmin }) {
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
   // Live Clock
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -736,7 +737,7 @@ export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwi
 
     setIsSubmitting(true);
     try {
-      const response = await fetch("http://localhost:5000/api/tcpl/start", {
+      const response = await fetch(`${API_BASE_URL}/tcpl/start`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -784,7 +785,7 @@ export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwi
 
     setIsSubmitting(true);
     try {
-      const response = await fetch("http://localhost:5000/api/tcpl/complete", {
+      const response = await fetch(`${API_BASE_URL}/tcpl/complete`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

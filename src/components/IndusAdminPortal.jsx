@@ -73,13 +73,16 @@ export default function IndusAdminPortal({ currentUser, onLogout, onSwitchToAudi
     fetchData();
   }, [refreshKey]);
 
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+
   const fetchData = async () => {
     setLoading(true);
     try {
       const [overviewRes, auditsRes, auditorsRes] = await Promise.all([
-        fetch("http://localhost:5000/api/indus/overview"),
-        fetch("http://localhost:5000/api/indus/audits"),
-        fetch("http://localhost:5000/api/indus/auditors"),
+        fetch(`${API_BASE_URL}/indus/overview`),
+        fetch(`${API_BASE_URL}/indus/audits`),
+        fetch(`${API_BASE_URL}/indus/auditors`),
       ]);
 
       if (overviewRes.ok) {
@@ -107,11 +110,11 @@ export default function IndusAdminPortal({ currentUser, onLogout, onSwitchToAudi
     const targetAudit = auditObj || selectedAudit;
     if (!targetAudit) return;
     const finalStatus = statusOverride || reviewStatus || "APPROVED";
-    const finalRemarks = (remarksOverride !== null ? remarksOverride : reviewRemarks).trim() || 
+    const finalRemarks = (remarksOverride !== null ? remarksOverride : reviewRemarks).trim() ||
       (finalStatus === "APPROVED" ? "Verified & Gate-pass issued by Indus Admin" : "Rejected & Re-weigh required");
 
     try {
-      const res = await fetch(`http://localhost:5000/api/indus/audits/${targetAudit.id}/review`, {
+      const res = await fetch(`${API_BASE_URL}/indus/audits/${targetAudit.id}/review`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -143,7 +146,7 @@ export default function IndusAdminPortal({ currentUser, onLogout, onSwitchToAudi
   const handleDeleteAudit = async (id) => {
     if (!window.confirm(`Are you sure you want to permanently delete Indus Scrap record #IND-${id}?`)) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/indus/audits/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/indus/audits/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();
