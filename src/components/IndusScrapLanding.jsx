@@ -26,7 +26,6 @@ import {
 } from "lucide-react";
 
 export default function IndusScrapLanding({ currentUser, onLogout, isAdmin, onSwitchToAdmin }) {
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
   // Live Clock
   const [currentTime, setCurrentTime] = useState(new Date());
 
@@ -454,7 +453,7 @@ export default function IndusScrapLanding({ currentUser, onLogout, isAdmin, onSw
         exit_gps: gpsData.locationName,
       };
 
-      const res = await fetch(`${API_BASE_URL}/indus/submit`, {
+      const res = await fetch("http://localhost:5000/api/indus/submit", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),

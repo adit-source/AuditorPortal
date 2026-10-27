@@ -76,7 +76,6 @@ const INDIAN_STATES = [
 ];
 
 export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }) {
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
   const [activeTab, setActiveTab] = useState("overview"); // "overview" | "auditors" | "audits" | "attendance"
   const [activeNav, setActiveNav] = useState("dashboard");
   const [loading, setLoading] = useState(false);
@@ -138,7 +137,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
   useEffect(() => {
     const fetchOverview = async () => {
       try {
-        const res = await fetch(`${API_BASE_URL}/admin/overview`);
+        const res = await fetch("http://localhost:5000/api/admin/overview");
         const data = await res.json();
         if (data.success && data.stats) {
           setStats(data.stats);
@@ -163,7 +162,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
         if (selectedStateFilter !== "ALL") params.append("state", selectedStateFilter);
         if (selectedStatusFilter !== "ALL") params.append("status", selectedStatusFilter);
 
-        const res = await fetch(`${API_BASE_URL}/admin/auditors?${params.toString()}`);
+        const res = await fetch(`http://localhost:5000/api/admin/auditors?${params.toString()}`);
         const data = await res.json();
         if (data.success) {
           setAuditors(data.auditors || []);
@@ -185,7 +184,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
       try {
         const params = new URLSearchParams();
         if (auditStatusFilter !== "ALL") params.append("status", auditStatusFilter);
-        const res = await fetch(`${API_BASE_URL}/tcpl/audits?${params.toString()}`);
+        const res = await fetch(`http://localhost:5000/api/tcpl/audits?${params.toString()}`);
         const data = await res.json();
         if (data.success) {
           setAudits(data.audits || []);
@@ -205,7 +204,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
     const fetchAttendance = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`${API_BASE_URL}/admin/attendance`);
+        const res = await fetch("http://localhost:5000/api/admin/attendance");
         const data = await res.json();
         if (data.success) {
           setAttendanceLogs(data.logs || []);
@@ -222,7 +221,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
   // Auditor Status Update handler (approved, pending, suspended)
   const handleUpdateAuditorStatus = async (auditorId, newStatus) => {
     try {
-      const res = await fetch(`${API_BASE_URL}/admin/auditors/${auditorId}/status`, {
+      const res = await fetch(`http://localhost:5000/api/admin/auditors/${auditorId}/status`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ status: newStatus })
@@ -246,7 +245,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
   const handleUpdateAuditorState = async () => {
     if (!editStateModalAuditor) return;
     try {
-      const res = await fetch(`${API_BASE_URL}/admin/auditors/${editStateModalAuditor.id}/state`, {
+      const res = await fetch(`http://localhost:5000/api/admin/auditors/${editStateModalAuditor.id}/state`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ assigned_state: newStateVal })
@@ -268,7 +267,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
   const handleDeleteAuditor = async (auditorId, auditorName) => {
     if (!window.confirm(`Are you sure you want to remove auditor ${auditorName}?`)) return;
     try {
-      const res = await fetch(`${API_BASE_URL}/admin/auditors/${auditorId}`, {
+      const res = await fetch(`http://localhost:5000/api/admin/auditors/${auditorId}`, {
         method: "DELETE"
       });
       const data = await res.json();
@@ -291,7 +290,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
       return;
     }
     try {
-      const res = await fetch(`${API_BASE_URL}/admin/audits/${auditId}`, {
+      const res = await fetch(`http://localhost:5000/api/admin/audits/${auditId}`, {
         method: "DELETE"
       });
       const data = await res.json();
@@ -313,7 +312,7 @@ export default function AdminPortal({ currentUser, onLogout, onSwitchToAuditor }
   const handleSubmitAuditReview = async () => {
     if (!selectedAuditForReview) return;
     try {
-      const res = await fetch(`${API_BASE_URL}/admin/audits/${selectedAuditForReview.id}/review`, {
+      const res = await fetch(`http://localhost:5000/api/admin/audits/${selectedAuditForReview.id}/review`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
