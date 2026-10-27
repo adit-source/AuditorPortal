@@ -73,14 +73,18 @@ export default function IndusAdminPortal({ currentUser, onLogout, onSwitchToAudi
     fetchData();
   }, [refreshKey]);
 
+
+  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
   const fetchData = async () => {
     setLoading(true);
     try {
       const [overviewRes, auditsRes, auditorsRes] = await Promise.all([
-        fetch("http://localhost:5000/api/indus/overview"),
-        fetch("http://localhost:5000/api/indus/audits"),
-        fetch("http://localhost:5000/api/indus/auditors"),
+        fetch(`${API_BASE_URL}/indus/overview`),
+        fetch(`${API_BASE_URL}/indus/audits`),
+        fetch(`${API_BASE_URL}/indus/auditors`),
       ]);
+
 
       if (overviewRes.ok) {
         const d = await overviewRes.json();
@@ -107,7 +111,7 @@ export default function IndusAdminPortal({ currentUser, onLogout, onSwitchToAudi
     const targetAudit = auditObj || selectedAudit;
     if (!targetAudit) return;
     const finalStatus = statusOverride || reviewStatus || "APPROVED";
-    const finalRemarks = (remarksOverride !== null ? remarksOverride : reviewRemarks).trim() || 
+    const finalRemarks = (remarksOverride !== null ? remarksOverride : reviewRemarks).trim() ||
       (finalStatus === "APPROVED" ? "Verified & Gate-pass issued by Indus Admin" : "Rejected & Re-weigh required");
 
     try {

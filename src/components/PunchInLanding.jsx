@@ -91,7 +91,7 @@ export default function PunchInLanding({ onNavigateToAuth }) {
   // Fetch recent punch logs from backend
   const fetchPunchLogs = async () => {
     try {
-      const res = await fetch("http://localhost:5000/api/attendance/logs");
+      const res = await fetch("https://auditorportal-backend.onrender.com/api/attendance/logs");
       const data = await res.json();
       if (res.ok && data.logs && data.logs.length > 0) {
         setPunchLogs(data.logs);
@@ -231,7 +231,7 @@ export default function PunchInLanding({ onNavigateToAuth }) {
           verification_status: "VERIFIED"
         };
 
-        const res = await fetch("http://localhost:5000/api/attendance/punch", {
+        const res = await fetch("https://auditorportal-backend.onrender.com/api/attendance/punch", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)

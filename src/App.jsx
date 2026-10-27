@@ -112,7 +112,7 @@ function App() {
     let isMounted = true;
     const checkApi = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/health", {
+        const res = await fetch("http://auditorportal-backend.onrender.com/api/health", {
           signal: AbortSignal.timeout(3000)
         });
         if (res.ok && isMounted) {
@@ -174,7 +174,7 @@ function App() {
     setGoogleLoading(true);
     setAlertInfo(null);
     try {
-      const response = await fetch("http://localhost:5000/api/auth/google", {
+      const response = await fetch("http://auditorportal-backend.onrender.com/api/auth/google", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -221,7 +221,7 @@ function App() {
     // SIGN IN MODE
     if (isLogin) {
       try {
-        const response = await fetch("http://localhost:5000/api/login", {
+        const response = await fetch("http://auditorportal-backend.onrender.com/api/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -262,7 +262,7 @@ function App() {
 
     // SIGN UP / REGISTER MODE
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch("http://auditorportal-backend.onrender.com/api/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
