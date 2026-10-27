@@ -1,0 +1,71 @@
+:root {
+  font-family: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #f1f5f9;
+  background: #090d0a;
+  font-feature-settings: "ss01" on, "cv01" on;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: #090d0a;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  background: #090d0a;
+  color: #f1f5f9;
+  overflow-x: hidden;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+}
+
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 2px solid #10b981;
+  outline-offset: 2px;
+}
+
+::selection {
+  color: #000000;
+  background: #10b981;
+}
+
+/* Custom sleek dark scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #090d0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #19271e;
+  border-radius: 999px;
+  border: 1px solid #23372b;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #10b981;
+}
