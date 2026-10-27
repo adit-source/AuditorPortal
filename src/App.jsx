@@ -74,25 +74,15 @@ const INDIAN_STATES = [
 ];
 
 function App() {
-  // Session state: Quick Open defaults to HQ Admin
-  const [currentUser, setCurrentUser] = useState(() => {
-    try {
-      const saved = localStorage.getItem("auditor_session");
-      if (saved) return JSON.parse(saved);
-      const defaultAdmin = {
-        id: "admin-quick",
-        full_name: "Aditya Sharma (HQ Admin)",
-        email: "admin@tcpl.com",
-        role: "Admin",
-        assigned_state: "HQ / All States",
-        assigned_portal: "TCPL"
-      };
-      localStorage.setItem("auditor_session", JSON.stringify(defaultAdmin));
-      return defaultAdmin;
-    } catch {
-      return null;
-    }
-  });
+  // Start logged out. Never create a default admin session.
+const [currentUser, setCurrentUser] = useState(null);
+  try {
+    const saved = localStorage.getItem("auditor_session");
+    return saved ? JSON.parse(saved) : null;
+  } catch {
+    localStorage.removeItem("auditor_session");
+    return null;
+  }
 
   const [adminAuditorMode, setAdminAuditorMode] = useState(false);
   const [page, setPage] = useState("login"); // "login" | "register"
@@ -480,84 +470,6 @@ function App() {
         </div>
 
         <div className="auth-content">
-          {/* ⚡ Quick Open Bar for instant 1-click launch */}
-          <div style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: "10px",
-            marginBottom: "16px",
-            padding: "10px 12px",
-            background: "rgba(16, 185, 129, 0.08)",
-            border: "1px solid rgba(16, 185, 129, 0.28)",
-            borderRadius: "10px"
-          }}>
-            <button
-              type="button"
-              onClick={() => {
-                const adminUser = {
-                  id: "admin-quick",
-                  full_name: "Aditya Sharma (HQ Admin)",
-                  email: "admin@tcpl.com",
-                  role: "Admin",
-                  assigned_state: "HQ / All States",
-                  assigned_portal: "TCPL"
-                };
-                localStorage.setItem("auditor_session", JSON.stringify(adminUser));
-                setCurrentUser(adminUser);
-              }}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-                padding: "9px 12px",
-                background: "#073322",
-                color: "#34d399",
-                border: "1px solid #1e4b33",
-                borderRadius: "8px",
-                fontSize: "12px",
-                fontWeight: "700",
-                cursor: "pointer"
-              }}
-            >
-              <ShieldCheck size={15} />
-              <span>⚡ Quick Open Admin</span>
-            </button>
-
-            <button
-              type="button"
-              onClick={() => {
-                const auditorUser = {
-                  id: "auditor-quick",
-                  full_name: "Vikram Patil",
-                  email: "vikram.patil@tcpl.com",
-                  employee_code: "AUD-101",
-                  role: "Auditor",
-                  assigned_state: "Maharashtra",
-                  assigned_portal: "TCPL"
-                };
-                localStorage.setItem("auditor_session", JSON.stringify(auditorUser));
-                setCurrentUser(auditorUser);
-              }}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                gap: "8px",
-                padding: "9px 12px",
-                background: "rgba(255,255,255,0.06)",
-                color: "#ffffff",
-                border: "1px solid rgba(255,255,255,0.15)",
-                borderRadius: "8px",
-                fontSize: "12px",
-                fontWeight: "700",
-                cursor: "pointer"
-              }}
-            >
-              <User size={15} />
-              <span>⚡ Quick Open Auditor</span>
-            </button>
-          </div>
 
           {/* Segmented Tab Switcher */}
           <div className="tab-switcher">
