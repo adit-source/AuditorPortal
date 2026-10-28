@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import trcLogo from "../assets/trc-logo-dark.png";
+import { API_BASE_URL } from "../config";
 import {
   Camera,
   CameraOff,
@@ -91,7 +92,7 @@ export default function PunchInLanding({ onNavigateToAuth }) {
   // Fetch recent punch logs from backend
   const fetchPunchLogs = async () => {
     try {
-      const res = await fetch("https://auditorportal-backend.onrender.com/api/attendance/logs");
+      const res = await fetch(`${API_BASE_URL}/attendance/logs`);
       const data = await res.json();
       if (res.ok && data.logs && data.logs.length > 0) {
         setPunchLogs(data.logs);
@@ -231,7 +232,7 @@ export default function PunchInLanding({ onNavigateToAuth }) {
           verification_status: "VERIFIED"
         };
 
-        const res = await fetch("https://auditorportal-backend.onrender.com/api/attendance/punch", {
+        const res = await fetch(`${API_BASE_URL}/attendance/punch`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)

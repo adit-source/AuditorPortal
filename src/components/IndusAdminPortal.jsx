@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import trcLogo from "../assets/trc-logo-dark.png";
+import { API_BASE_URL } from "../config";
 import {
   Users,
   ShieldCheck,
@@ -74,7 +75,7 @@ export default function IndusAdminPortal({ currentUser, onLogout, onSwitchToAudi
   }, [refreshKey]);
 
 
-  const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 
   const fetchData = async () => {
     setLoading(true);
@@ -115,7 +116,7 @@ export default function IndusAdminPortal({ currentUser, onLogout, onSwitchToAudi
       (finalStatus === "APPROVED" ? "Verified & Gate-pass issued by Indus Admin" : "Rejected & Re-weigh required");
 
     try {
-      const res = await fetch(`http://localhost:5000/api/indus/audits/${targetAudit.id}/review`, {
+      const res = await fetch(`${API_BASE_URL}/indus/audits/${targetAudit.id}/review`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -147,7 +148,7 @@ export default function IndusAdminPortal({ currentUser, onLogout, onSwitchToAudi
   const handleDeleteAudit = async (id) => {
     if (!window.confirm(`Are you sure you want to permanently delete Indus Scrap record #IND-${id}?`)) return;
     try {
-      const res = await fetch(`http://localhost:5000/api/indus/audits/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/indus/audits/${id}`, {
         method: "DELETE",
       });
       const data = await res.json();

@@ -4,6 +4,7 @@ import TCPLAuditLanding from "./components/TCPLAuditLanding";
 import AdminPortal from "./components/AdminPortal";
 import IndusScrapLanding from "./components/IndusScrapLanding";
 import IndusAdminPortal from "./components/IndusAdminPortal";
+import { API_BASE_URL } from "./config";
 import {
   Shield,
   ShieldCheck,
@@ -112,8 +113,8 @@ function App() {
     let isMounted = true;
     const checkApi = async () => {
       try {
-        const res = await fetch("http://auditorportal-backend.onrender.com/api/health", {
-          signal: AbortSignal.timeout(3000)
+        const res = await fetch(`${API_BASE_URL}/health`, {
+          signal: AbortSignal.timeout(12000)
         });
         if (res.ok && isMounted) {
           setBackendStatus("online");
@@ -174,7 +175,7 @@ function App() {
     setGoogleLoading(true);
     setAlertInfo(null);
     try {
-      const response = await fetch("http://auditorportal-backend.onrender.com/api/auth/google", {
+      const response = await fetch(`${API_BASE_URL}/auth/google`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -221,7 +222,7 @@ function App() {
     // SIGN IN MODE
     if (isLogin) {
       try {
-        const response = await fetch("http://auditorportal-backend.onrender.com/api/login", {
+        const response = await fetch(`${API_BASE_URL}/login`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
@@ -262,7 +263,7 @@ function App() {
 
     // SIGN UP / REGISTER MODE
     try {
-      const response = await fetch("http://auditorportal-backend.onrender.com/api/register", {
+      const response = await fetch(`${API_BASE_URL}/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

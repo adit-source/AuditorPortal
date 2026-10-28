@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import trcLogo from "../assets/trc-logo-dark.png";
+import { API_BASE_URL } from "../config";
 import {
   ShieldCheck,
   Camera,
@@ -453,7 +454,7 @@ export default function IndusScrapLanding({ currentUser, onLogout, isAdmin, onSw
         exit_gps: gpsData.locationName,
       };
 
-      const res = await fetch("http://localhost:5000/api/indus/submit", {
+      const res = await fetch(`${API_BASE_URL}/indus/submit`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
