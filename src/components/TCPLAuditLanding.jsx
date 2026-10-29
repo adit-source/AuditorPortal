@@ -1,6 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 import trcLogo from "../assets/trc-logo-dark.png";
-import { API_BASE_URL } from "../config";
 import {
   Camera,
   CameraOff,
@@ -147,7 +146,7 @@ export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwi
   const [selectedSite, setSelectedSite] = useState(() => {
     const initialState =
       currentUser?.assigned_state &&
-      !currentUser.assigned_state.toLowerCase().includes("pending")
+        !currentUser.assigned_state.toLowerCase().includes("pending")
         ? currentUser.assigned_state.split(",")[0].trim()
         : "Maharashtra";
     return getPresetSitesForState(initialState)[0] || "";
@@ -159,7 +158,7 @@ export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwi
 
   // Theme Mode: "light" (Green, Black & White) by default, or "dark" (Green & Black)
   const [themeMode, setThemeMode] = useState(() => {
-    return localStorage.getItem("portal_theme") || "light";
+    return localStorage.getItem("portal_theme") || "dark";
   });
 
   useEffect(() => {
@@ -470,7 +469,7 @@ export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwi
     if ("geolocation" in navigator) {
       watcherId = navigator.geolocation.watchPosition(
         (pos) => updateGpsPosition(pos),
-        () => {},
+        () => { },
         { enableHighAccuracy: true, maximumAge: 15000, timeout: 10000 }
       );
     }
@@ -581,7 +580,7 @@ export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwi
       setCameraStream(stream);
       if (videoRef.current) {
         videoRef.current.srcObject = stream;
-        videoRef.current.play().catch(() => {});
+        videoRef.current.play().catch(() => { });
       }
     } catch (err) {
       console.warn("Flip camera error:", err);
@@ -737,7 +736,7 @@ export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwi
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/tcpl/start`, {
+      const response = await fetch("https://auditorportal-backend.onrender.com/api/tcpl/start", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -785,7 +784,7 @@ export default function TCPLAuditLanding({ currentUser, onLogout, isAdmin, onSwi
 
     setIsSubmitting(true);
     try {
-      const response = await fetch(`${API_BASE_URL}/tcpl/complete`, {
+      const response = await fetch("https://auditorportal-backend.onrender.com/api/tcpl/complete", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -954,18 +953,18 @@ ${remarks || "Physical inspection verified against dispatch manifest."}
           <button
             type="button"
             className="btn-theme-toggle"
-            onClick={() => setThemeMode(prev => (prev === "light" ? "dark" : "light"))}
-            title={themeMode === "light" ? "Switch to Dark Mode" : "Switch to Green, Black & White Mode"}
+            onClick={() => setThemeMode(prev => (prev === "dark" ? "light" : "dark"))}
+            title={themeMode === "dark" ? "Switch to Light Mode" : "Switch to Dark Mode (Indus Style)"}
           >
-            {themeMode === "light" ? (
+            {themeMode === "dark" ? (
               <>
                 <Moon size={13} className="text-emerald-400" />
-                <span>Dark</span>
+                <span>Light</span>
               </>
             ) : (
               <>
-                <Sun size={13} className="text-amber-400" />
-                <span>Green/White</span>
+                <Moon size={13} className="text-emerald-400" />
+                <span>Dark</span>
               </>
             )}
           </button>
@@ -1182,7 +1181,7 @@ ${remarks || "Physical inspection verified against dispatch manifest."}
                             videoRef.current = el;
                             if (el && cameraStream && el.srcObject !== cameraStream) {
                               el.srcObject = cameraStream;
-                              el.play().catch(() => {});
+                              el.play().catch(() => { });
                             }
                           }}
                           autoPlay
@@ -1268,9 +1267,8 @@ ${remarks || "Physical inspection verified against dispatch manifest."}
 
               {/* Step 2: Excel Upload */}
               <div
-                className={`section-block step-box ${currentStep === 2 ? "step-active" : ""} ${
-                  currentStep < 2 ? "step-disabled" : ""
-                }`}
+                className={`section-block step-box ${currentStep === 2 ? "step-active" : ""} ${currentStep < 2 ? "step-disabled" : ""
+                  }`}
               >
                 <div className="section-title">
                   <FileSpreadsheet size={16} className="text-emerald-400" />
@@ -1370,9 +1368,8 @@ ${remarks || "Physical inspection verified against dispatch manifest."}
 
               {/* Step 3: Exit Selfie */}
               <div
-                className={`section-block step-box ${currentStep === 3 ? "step-active" : ""} ${
-                  currentStep < 3 ? "step-disabled" : ""
-                }`}
+                className={`section-block step-box ${currentStep === 3 ? "step-active" : ""} ${currentStep < 3 ? "step-disabled" : ""
+                  }`}
               >
                 <div className="section-title">
                   <Camera size={16} className="text-emerald-400" />
@@ -1443,7 +1440,7 @@ ${remarks || "Physical inspection verified against dispatch manifest."}
                             videoRef.current = el;
                             if (el && cameraStream && el.srcObject !== cameraStream) {
                               el.srcObject = cameraStream;
-                              el.play().catch(() => {});
+                              el.play().catch(() => { });
                             }
                           }}
                           autoPlay

@@ -5479,6 +5479,295 @@
 }
 
 /* =============================================================
+   3A. INDUS-STYLE DEEP DARK MATRIX THEME (.theme-dark)
+   Immersive, High-Contrast Obsidian Black with Neon Emerald Accents
+============================================================= */
+.tcpl-landing-root.theme-dark {
+  background-color: #060907;
+  background-image: 
+    radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.16) 0%, transparent 60%),
+    radial-gradient(circle at 85% 30%, rgba(16, 185, 129, 0.08) 0%, transparent 45%),
+    linear-gradient(180deg, #09110c 0%, #060a08 50%, #040705 100%);
+  background-attachment: fixed;
+  color: #f8fafc;
+}
+
+.theme-dark .tcpl-topbar {
+  background: rgba(9, 17, 12, 0.95);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid #1a2c20;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+.theme-dark .tcpl-title-main {
+  color: #ffffff;
+}
+
+.theme-dark .tcpl-title-sub {
+  color: #34d399;
+}
+
+.theme-dark .auditor-identity-badge {
+  background: #0e1711;
+  border: 1px solid #1a2c20;
+}
+
+.theme-dark .identity-name {
+  color: #ffffff;
+}
+
+.theme-dark .identity-code {
+  color: #94a3b8;
+}
+
+.theme-dark .live-clock-pill {
+  background: #0e1711;
+  border: 1px solid #1a2c20;
+  color: #34d399;
+}
+
+.theme-dark .state-tag-pill {
+  background: #0e1711;
+  border: 1px solid #1a2c20;
+  color: #e2e8f0;
+}
+
+.theme-dark .btn-theme-toggle {
+  background: #101d15;
+  border: 1px solid #1e3827;
+  color: #34d399;
+}
+
+.theme-dark .btn-theme-toggle:hover {
+  background: #10b981;
+  color: #040905;
+  border-color: #10b981;
+}
+
+.theme-dark .flow-hero-banner {
+  background: #0e1611;
+  border: 1px solid #1a2c20;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.35);
+}
+
+.theme-dark .flow-hero-greeting,
+.theme-dark .greeting-text {
+  color: #ffffff !important;
+}
+
+.theme-dark .hero-content p {
+  color: #94a3b8;
+}
+
+.theme-dark .hero-badge {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.theme-dark .flow-stepper {
+  background: #0a110c;
+  border: 1px solid #1a2c20;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+.theme-dark .flow-stepper .step-circle {
+  background: #121c16;
+  border: 1px solid #1e3525;
+  color: #64748b;
+}
+
+.theme-dark .flow-stepper .step-item.active .step-circle {
+  background: #10b981;
+  color: #040905;
+  border-color: #34d399;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.45);
+}
+
+.theme-dark .flow-stepper .step-item.done .step-circle {
+  background: #059669;
+  color: #ffffff;
+  border-color: #10b981;
+}
+
+.theme-dark .flow-stepper .step-label {
+  color: #94a3b8;
+}
+
+.theme-dark .flow-stepper .step-item.active .step-label {
+  color: #34d399;
+  font-weight: 700;
+}
+
+.theme-dark .flow-stepper .step-line {
+  background: #16261b;
+}
+
+.theme-dark .section-block {
+  background: #0e1611;
+  border: 1px solid #1a2c20;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+}
+
+.theme-dark .section-title {
+  color: #ffffff;
+}
+
+.theme-dark .step-description {
+  color: #94a3b8;
+}
+
+.theme-dark .section-block.step-box.step-active {
+  background: #0e1611;
+  border-color: #10b981;
+  box-shadow: 0 0 0 1px #10b981, 0 12px 36px rgba(0, 0, 0, 0.45);
+}
+
+.theme-dark .auto-location-card {
+  background: #0a110d;
+  border: 1px solid #162c1d;
+}
+
+.theme-dark .auto-gps-status-info span.font-bold {
+  color: #ffffff !important;
+}
+
+.theme-dark .auto-gps-status-info span.text-slate-300 {
+  color: #94a3b8 !important;
+}
+
+.theme-dark .auto-status-chip {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid #10b981;
+}
+
+.theme-dark .auto-gps-coords-bar {
+  background: #080e0a;
+  border: 1px solid #1a2c20;
+}
+
+.theme-dark .auto-gps-coords-bar span.text-slate-200 {
+  color: #e2e8f0 !important;
+}
+
+.theme-dark .auto-location-detected-banner {
+  background: rgba(16, 185, 129, 0.12);
+  border: 1px solid #10b981;
+}
+
+.theme-dark .auto-location-detected-banner span {
+  color: #34d399 !important;
+}
+
+.theme-dark .auto-watermark-notice {
+  color: #64748b;
+}
+
+.theme-dark .form-group label {
+  color: #e2e8f0;
+  font-weight: 700;
+}
+
+.theme-dark input,
+.theme-dark select,
+.theme-dark textarea {
+  background: #080e0a !important;
+  border: 1px solid #1e3827 !important;
+  color: #ffffff !important;
+}
+
+.theme-dark input:focus,
+.theme-dark select:focus,
+.theme-dark textarea:focus {
+  border-color: #10b981 !important;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.25) !important;
+}
+
+.theme-dark .file-dropzone {
+  background: #0a110c;
+  border: 2px dashed #1e3827;
+}
+
+.theme-dark .file-dropzone:hover {
+  background: #0e1912;
+  border-color: #10b981;
+}
+
+.theme-dark .dropzone-prompt strong {
+  color: #ffffff;
+}
+
+.theme-dark .dropzone-prompt span {
+  color: #94a3b8;
+}
+
+.theme-dark .file-uploaded-badge {
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid #10b981;
+  color: #34d399;
+}
+
+.theme-dark .shift-active-card {
+  background: #0e1611;
+  border: 1px solid #1a2c20;
+}
+
+.theme-dark .shift-active-card .card-header-row span {
+  color: #ffffff;
+}
+
+.theme-dark .metric-box {
+  background: #0a110c;
+  border: 1px solid #1a2c20;
+}
+
+.theme-dark .metric-label {
+  color: #94a3b8;
+}
+
+.theme-dark .metric-val {
+  color: #ffffff;
+}
+
+.theme-dark .whatsapp-summary-card {
+  background: #0e1611;
+  border: 1px solid #10b981;
+}
+
+.theme-dark .whatsapp-header h4 {
+  color: #ffffff;
+}
+
+.theme-dark .whatsapp-bubble-preview {
+  background: #080e0a;
+  border: 1px solid #1a2c20;
+}
+
+.theme-dark .whatsapp-pre-text {
+  color: #34d399;
+}
+
+.theme-dark .live-camera-status-card {
+  background: #0e1611;
+  border: 1px solid #1a2c20;
+}
+
+.theme-dark .camera-status-body p {
+  color: #94a3b8;
+}
+
+.theme-dark .camera-status-body strong {
+  color: #ffffff;
+}
+
+.theme-dark .camera-status-meta {
+  background: #080e0a;
+  border: 1px solid #1a2c20;
+}
+
+/* =============================================================
    3. GREEN, BLACK & WHITE THEME (.theme-gbw)
    High-Contrast, Fresh, Modern Enterprise Auditor Portal
    Pure White Surfaces + Deep Black Headings + Vibrant Emerald Green

@@ -399,7 +399,7 @@ function App() {
             <span className="gradient-text">Auditor Portal</span>
           </h2>
           <p style={{ color: "#94a3b8", fontSize: "12px", marginTop: "4px" }}>
-            Field audit, scrap lifting dispatch, packaging verification & geo-tagged attendance gateway for TCPL Packaging & Indus Towers nationwide.
+            Field audits, dispatch records & verified live attendance.
           </p>
         </div>
 
@@ -410,8 +410,8 @@ function App() {
               <Building size={16} className="text-emerald-400" />
             </div>
             <div>
-              <span className="simple-item-title">Enterprise Field Inspections</span>
-              <span className="simple-item-sub">Batch carton defect auditing (TCPL) & scrap lifting weighbridge compliance (Indus)</span>
+              <span className="simple-item-title">Field Inspections</span>
+              <span className="simple-item-sub">TCPL packaging & Indus scrap audits</span>
             </div>
           </div>
 
@@ -420,8 +420,8 @@ function App() {
               <Camera size={16} className="text-blue-400" />
             </div>
             <div>
-              <span className="simple-item-title">Strict Live Camera Attendance</span>
-              <span className="simple-item-sub">Tamper-proof geo-tagged entry & exit punches with real-time GPS coordinates</span>
+              <span className="simple-item-title">Live Attendance</span>
+              <span className="simple-item-sub">Selfie & GPS location verification</span>
             </div>
           </div>
 
@@ -430,8 +430,8 @@ function App() {
               <FileSpreadsheet size={16} className="text-purple-400" />
             </div>
             <div>
-              <span className="simple-item-title">HQ Admin Review & Cloud Sync</span>
-              <span className="simple-item-sub">One-click audit approvals, live tonnage ledgers & automated spreadsheet reporting</span>
+              <span className="simple-item-title">Admin Review</span>
+              <span className="simple-item-sub">Approvals & automated Excel reports</span>
             </div>
           </div>
         </div>
