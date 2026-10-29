@@ -29,7 +29,9 @@ import {
   FileSpreadsheet,
   LocateFixed,
   RefreshCw,
-  Navigation
+  Navigation,
+  UserPlus,
+  FileText
 } from "lucide-react";
 import "./App.css";
 import "./styles/PodTheme.css";
@@ -384,7 +386,7 @@ function App() {
             <img src={trcLogo} alt="TRC - Let's Grow Together" className="brand-logo-img" />
           </div>
           <div className="brand-details">
-            <span className="brand-consulting">CONSULTING PVT. LTD.</span>
+            <span className="brand-consulting">CONSULTING PVT. LTD</span>
             <span className="brand-legal">VERIFIED SITE AUDIT & ATTENDANCE</span>
           </div>
         </div>
@@ -392,7 +394,7 @@ function App() {
         {/* Main Pitch */}
         <div className="brand-copy">
           <div className="eyebrow">
-            <span className="live-dot" /> TRC ENTERPRISE AUDIT SYSTEM
+            <span className="live-dot" /> TRC AUDIT SYSTEM
           </div>
           <h2>
             Operational Site<br />
@@ -403,48 +405,39 @@ function App() {
           </p>
         </div>
 
-        {/* Feature Highlights */}
-        <div className="brand-simple-card">
-          <div className="simple-item">
-            <div style={{ padding: "6px", borderRadius: "8px", background: "rgba(16, 185, 129, 0.15)", border: "1px solid rgba(16, 185, 129, 0.3)" }}>
-              <Building size={16} className="text-emerald-400" />
-            </div>
-            <div>
-              <span className="simple-item-title">Field Inspections</span>
-              <span className="simple-item-sub">TCPL packaging & Indus scrap audits</span>
-            </div>
+        {/* Horizontal Feature Strip */}
+        <div className="brand-features-horizontal">
+          <div className="feature-h-item">
+            <MapPin size={18} className="feature-h-icon" />
+            <span>Site Inspections</span>
           </div>
-
-          <div className="simple-item">
-            <div style={{ padding: "6px", borderRadius: "8px", background: "rgba(59, 130, 246, 0.15)", border: "1px solid rgba(59, 130, 246, 0.3)" }}>
-              <Camera size={16} className="text-blue-400" />
-            </div>
-            <div>
-              <span className="simple-item-title">Live Attendance</span>
-              <span className="simple-item-sub">Selfie & GPS location verification</span>
-            </div>
+          <div className="feature-h-divider" />
+          <div className="feature-h-item">
+            <User size={18} className="feature-h-icon" />
+            <span>Live Attendance</span>
           </div>
-
-          <div className="simple-item">
-            <div style={{ padding: "6px", borderRadius: "8px", background: "rgba(168, 85, 247, 0.15)", border: "1px solid rgba(168, 85, 247, 0.3)" }}>
-              <FileSpreadsheet size={16} className="text-purple-400" />
-            </div>
-            <div>
-              <span className="simple-item-title">Admin Review</span>
-              <span className="simple-item-sub">Approvals & automated Excel reports</span>
-            </div>
+          <div className="feature-h-divider" />
+          <div className="feature-h-item">
+            <FileText size={18} className="feature-h-icon" />
+            <span>Audit Reports</span>
           </div>
         </div>
 
-        {/* Simple Footer */}
-        <div className="brand-simple-footer">
-          <span className="live-dot" />
-          <span>TRC Corporate Consulting Pvt. Ltd. • Verification Network</span>
+        {/* Shield Footer */}
+        <div className="brand-shield-footer">
+          <span className="shield-divider-line" />
+          <div className="shield-tag-pill">
+            <ShieldCheck size={14} className="text-emerald-400" />
+            <span>SAFER AUDIT • BETTER OPERATIONS • STRONGER TOGETHER</span>
+          </div>
+          <span className="shield-divider-line" />
         </div>
       </section>
 
       {/* Form Panel (Right) */}
       <section className="form-panel">
+        <div className="auth-card-container">
+          <div className="auth-card">
         {/* Top Status Header */}
         <div className="form-top-bar">
           <div className="mobile-brand brand">
@@ -470,31 +463,33 @@ function App() {
           </div>
         </div>
 
-        <div className="auth-content">
+        
 
           {/* Segmented Tab Switcher */}
-          <div className="tab-switcher">
-            <button
-              type="button"
-              className={`tab-btn ${isLogin ? "active" : ""}`}
-              onClick={() => {
-                setPage("login");
-                setAlertInfo(null);
-              }}
-            >
-              Sign In
-            </button>
-            <button
-              type="button"
-              className={`tab-btn ${!isLogin ? "active" : ""}`}
-              onClick={() => {
-                setPage("register");
-                setAlertInfo(null);
-              }}
-            >
-              Sign Up
-            </button>
-          </div>
+            <div className="tab-switcher">
+              <button
+                type="button"
+                className={`tab-btn ${isLogin ? "active" : ""}`}
+                onClick={() => {
+                  setPage("login");
+                  setAlertInfo(null);
+                }}
+              >
+                <User size={15} />
+                <span>Sign In</span>
+              </button>
+              <button
+                type="button"
+                className={`tab-btn ${!isLogin ? "active" : ""}`}
+                onClick={() => {
+                  setPage("register");
+                  setAlertInfo(null);
+                }}
+              >
+                <UserPlus size={15} />
+                <span>Sign Up</span>
+              </button>
+            </div>
 
           {/* Heading */}
           <div className="auth-heading">
@@ -746,8 +741,8 @@ function App() {
             </button>
           </p>
         </div>
+      </div>
 
-        {/* Footer */}
         <footer className="form-footer">
           <span>© 2026 TRC Consulting Pvt. Ltd. All rights reserved.</span>
           <span className="secure-badge">
